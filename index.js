@@ -86,7 +86,31 @@ app.post('/delete_task' , (req , res) => {
 app.post('/update_task' , (req,res) => {
     const id = req.body.id ;
     const title = req.body.title ;
-    const description = req.body
+    const description = req.body.description ;
+    const prority = req.body.prority ;
+    const emoji = req.body.emoji;
+
+    let index = -1 ;
+
+    tasks.map((task , i) => {
+        if (id === task.id){
+            index = i 
+        }
+    })
+
+    tasks[index] = {
+        id : id ,
+        title : title ,
+        description : description,
+        prority : prority,
+        emoji : emoji
+    }
+
+    res.json({
+        'status' : 'Success',
+        'message' : 'Task updated Successfully',
+        'data' : tasks
+    })
 
 })
 
