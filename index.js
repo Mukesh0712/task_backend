@@ -1,15 +1,18 @@
 const express = require('express');
 
+require('dotenv').config()
+
 const app = express();
 
 app.use(express.json())
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 //team database
 let tasks = []
 
-const DB = "My Database";
+const DB = process.env.MONGODB_URI;
+console.log(DB);
 
 //create a task
 app.post('/tasks' , (req , res)=>{
